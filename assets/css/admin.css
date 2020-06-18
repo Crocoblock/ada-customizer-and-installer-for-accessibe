@@ -1,0 +1,95 @@
+.eiab-panel {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 -10px;
+	padding: 25px 0 0 0;
+	align-items: flex-start;
+}
+
+.eiab-panel-children {
+	margin: 0 10px 30px;
+	width: calc( 25% - 25px );
+	flex: 0 0 calc( 25% - 25px );
+	max-width: 300px;
+	min-width: 245px;
+}
+
+.eiab-panel-children .components-base-control__help {
+	margin-bottom: 0;
+}
+
+.eiab-panel-children .components-panel__body-title {
+	margin-bottom: 0 !important;
+}
+
+.eiab-panel-children .components-base-control {
+	margin: 0 -16px;
+	padding: 15px 16px;
+	border-top: 1px solid #e2e4e7;
+}
+
+.eiab-panel-children .components-base-control:last-child {
+	padding-bottom: 0;
+}
+
+.eiab-panel-children .block-editor-panel-color-gradient-settings__panel-title {
+	display: flex;
+	align-items: center;
+}
+
+.eiab-panel-children .components-range-control__number {
+	padding-right: 0
+}
+
+.eiab-iconpicker {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 5px 0 0 0;
+}
+
+.eiab-icon {
+	width: 20%;
+	flex: 0 0 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	padding: 12px 0;
+	border: 1px solid #e2e4e7;
+	position: relative;
+	box-sizing: border-box;
+	margin-top: -1px;
+}
+.eiab-icon:not(:nth-child(5n+1)) {
+	margin-left: -1px;
+}
+.eiab-icon:hover,
+.eiab-icon--active {
+	z-index: 99;
+	border-color: #0075af;
+}
+
+.eiab-icon svg {
+	vertical-align: middle;
+	width: 24px;
+	height: 24px;
+}
+
+.eiab-icon svg path,
+.eiab-icon svg circle,
+.eiab-icon svg rect {
+	fill: #555d66;
+}
+
+.eiab-icon:hover svg path,
+.eiab-icon:hover svg circle,
+.eiab-icon:hover svg rect,
+.eiab-icon--active svg path,
+.eiab-icon--active svg circle,
+.eiab-icon--active svg rect {
+	fill: #0075af;
+}
+
+.eiab-panel-children .components-save-button-control .components-base-control__field {
+	margin: 0;
+}
