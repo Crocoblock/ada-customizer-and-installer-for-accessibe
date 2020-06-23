@@ -109,6 +109,15 @@ class Settings {
 	}
 
 	/**
+	 * Returns allowed settings list
+	 *
+	 * @return [type] [description]
+	 */
+	public function settings_list() {
+		return array_keys( $this->defaults );
+	}
+
+	/**
 	 * Sanitize key
 	 *
 	 * @return [type] [description]
@@ -134,8 +143,7 @@ class Settings {
 				break;
 
 			case 'installationScript':
-				// TODO: sanitize installation script
-				$value = wp_unslash( $value );
+				$value = wp_unslash( $this->remove_untrusted_code( $value ) );
 				break;
 
 			case 'triggerColor':
@@ -145,6 +153,30 @@ class Settings {
 			default:
 				$value = wp_kses_post( $value );
 				break;
+		}
+
+		return $value;
+
+	}
+
+	/**
+	 * Returns an empty string if untrusted code is found in the string
+	 *
+	 * @param  [type] $value [description]
+	 * @return [type]        [description]
+	 */
+	public function remove_untrusted_code( $value ) {
+
+		$untrusted_pieces = array(
+			'alert',
+			'eval',
+			'cookie',
+		);
+
+		foreach ( $untrusted_pieces as $piece ) {
+			if ( false !== strpos( $value, $piece ) ) {
+				return '';
+			}
 		}
 
 		return $value;

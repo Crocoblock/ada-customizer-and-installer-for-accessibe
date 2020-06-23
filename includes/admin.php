@@ -79,7 +79,7 @@ class Admin {
 			);
 		}
 
-		$settings = ! empty( $_REQUEST['settings'] ) ? $_REQUEST['settings'] : false;
+		$settings = ! empty( $_REQUEST['settings'] ) ? $this->sanitize_settings( $_REQUEST['settings'] ) : false;
 
 		if ( empty( $settings ) ) {
 			wp_send_json_error(
@@ -91,6 +91,29 @@ class Admin {
 
 		$this->settings->update_all( $settings );
 		wp_send_json_success();
+
+	}
+
+	/**
+	 * Sanitize settings from request
+	 *
+	 * @param  array  $settings Settings list to sanitize
+	 * @return [type]           [description]
+	 */
+	public function sanitize_settings( $settings = array() ) {
+
+		if ( ! is_array( $settings ) ) {
+			return array();
+		}
+
+		$sanitized_settings = array();
+
+		foreach ( $this->settings->settings_list() as $setting ) {
+			$value = ! empty( $settings[ $setting ] ) ? $settings[ $setting ] : false;
+			$sanitized_settings[ $setting ] = $this->settings->sanitize_val( $value, $setting );
+		}
+
+		return $sanitized_settings;
 
 	}
 

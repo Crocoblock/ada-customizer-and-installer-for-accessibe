@@ -36,33 +36,33 @@ class Frontend {
 		$settings = $this->settings->get();
 
 		if ( ! empty( $settings['manualMode'] ) && ! empty( $settings['installationScript'] ) ) {
-			echo $settings['installationScript'];
+			echo $this->settings->remove_untrusted_code( $settings['installationScript'] );
 			return;
 		}
 
 		$config = array(
-			'statementLink'    => $settings['statementLink'],
-			'feedbackLink'     => $settings['feedbackLink'],
-			'footerHtml'       => $settings['footerHtml'],
-			'hideMobile'       => $settings['hideMobile'],
-			'hideTrigger'      => $settings['hideTrigger'],
-			'language'         => $settings['language'],
-			'position'         => $settings['position'],
-			'leadColor'        => $settings['leadColor'],
-			'triggerColor'     => $settings['triggerColor'],
+			'statementLink'    => $this->settings->sanitize_val( $settings['statementLink'], 'statementLink' ),
+			'feedbackLink'     => $this->settings->sanitize_val( $settings['feedbackLink'], 'feedbackLink' ),
+			'footerHtml'       => $this->settings->sanitize_val( $settings['footerHtml'], 'footerHtml' ),
+			'hideMobile'       => $this->settings->sanitize_val( $settings['hideMobile'], 'hideMobile' ),
+			'hideTrigger'      => $this->settings->sanitize_val( $settings['hideTrigger'], 'hideTrigger' ),
+			'language'         => $this->settings->sanitize_val( $settings['language'], 'language' ),
+			'position'         => $this->settings->sanitize_val( $settings['position'], 'position' ),
+			'leadColor'        => $this->settings->sanitize_val( $settings['leadColor'], 'leadColor' ),
+			'triggerColor'     => $this->settings->sanitize_val( $settings['triggerColor'], 'triggerColor' ),
 			'triggerRadius'    => $this->number_to_percent( $settings['triggerRadius'] ),
-			'triggerPositionX' => $settings['triggerPositionX'],
-			'triggerPositionY' => $settings['triggerPositionY'],
-			'triggerIcon'      => $settings['triggerIcon'],
-			'triggerSize'      => $settings['triggerSize'],
-			'triggerOffsetX'   => $settings['triggerOffsetX'],
-			'triggerOffsetY'   => $settings['triggerOffsetY'],
+			'triggerPositionX' => $this->settings->sanitize_val( $settings['triggerPositionX'], 'triggerPositionX' ),
+			'triggerPositionY' => $this->settings->sanitize_val( $settings['triggerPositionY'], 'triggerPositionY' ),
+			'triggerIcon'      => $this->settings->sanitize_val( $settings['triggerIcon'], 'triggerIcon' ),
+			'triggerSize'      => $this->settings->sanitize_val( $settings['triggerSize'], 'triggerSize' ),
+			'triggerOffsetX'   => $this->settings->sanitize_val( $settings['triggerOffsetX'], 'triggerOffsetX' ),
+			'triggerOffsetY'   => $this->settings->sanitize_val( $settings['triggerOffsetY'], 'triggerOffsetY' ),
 			'mobile'           => array(
-				'triggerSize'      => $settings['mobileTriggerSize'],
-				'triggerPositionX' => $settings['mobileTriggerPositionX'],
-				'triggerPositionY' => $settings['mobileTriggerPositionY'],
-				'triggerOffsetX'   => $settings['mobileTriggerOffsetX'],
-				'triggerOffsetY'   => $settings['mobileTriggerOffsetY'],
+				'triggerSize'      => $this->settings->sanitize_val( $settings['mobileTriggerSize'], 'mobileTriggerSize' ),
+				'triggerPositionX' => $this->settings->sanitize_val( $settings['mobileTriggerPositionX'], 'mobileTriggerPositionX' ),
+				'triggerPositionY' => $this->settings->sanitize_val( $settings['mobileTriggerPositionY'], 'mobileTriggerPositionY' ),
+				'triggerOffsetX'   => $this->settings->sanitize_val( $settings['mobileTriggerOffsetX'], 'mobileTriggerOffsetX' ),
+				'triggerOffsetY'   => $this->settings->sanitize_val( $settings['mobileTriggerOffsetY'], 'mobileTriggerOffsetY' ),
 				'triggerRadius'    => $this->number_to_percent( $settings['mobileTriggerRadius'] ),
 			),
 		);
